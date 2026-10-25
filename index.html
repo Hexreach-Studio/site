@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hexreach Studio — Arcane Extraction</title>
+<meta name="description" content="Hexreach Studio — an independent game studio shipping Arcane Extraction, a single-player PvE extraction shooter where every spell is built, not picked.">
+<meta property="og:title" content="Hexreach Studio — Arcane Extraction">
+<meta property="og:description" content="Build every spell you cast. Raid a frontier where the elements went feral. Extract before the Storm Surge — or lose everything you carried.">
+<meta property="og:image" content="assets/vista.jpg">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0a10;
+    --bg-raised: #141019;
+    --ink: #e8e3da;
+    --ink-dim: #a89f93;
+    --violet: #9a86e0;
+    --ember: #e08340;
+    --line: #2a2333;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .display { font-family: "Cinzel", serif; letter-spacing: .04em; }
+  a { color: var(--violet); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px;
+    background: linear-gradient(#0c0a10ee, #0c0a1000);
+  }
+  nav .brand { font-size: 19px; font-weight: 700; color: var(--ink); letter-spacing: .14em; text-transform: uppercase; }
+  nav .brand:hover { text-decoration: none; color: var(--violet); }
+  nav .links { display: flex; gap: 26px; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; }
+  nav .links a { color: var(--ink-dim); }
+  nav .links a:hover { color: var(--ink); text-decoration: none; }
+
+  header.hero {
+    position: relative; min-height: 88vh;
+    display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+    text-align: center; padding: 0 24px 72px;
+  }
+  header.hero img.art {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center 40%;
+    -webkit-mask-image: linear-gradient(#000 62%, transparent);
+    mask-image: linear-gradient(#000 62%, transparent);
+  }
+  header.hero .over {
+    position: relative; z-index: 1; max-width: 780px;
+    text-shadow: 0 2px 18px #000c;
+  }
+  .tagline {
+    font-size: clamp(20px, 3vw, 30px); color: var(--ink);
+    font-weight: 500; margin-bottom: 14px;
+  }
+  .sub {
+    color: var(--ink-dim); font-size: clamp(15px, 1.6vw, 18px);
+    max-width: 620px; margin: 0 auto 26px;
+  }
+  .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 13px 30px; border-radius: 4px;
+    font-weight: 600; font-size: 15px; letter-spacing: .05em; text-transform: uppercase;
+    border: 1px solid var(--violet); color: #cfc4f5; background: #9a86e022;
+  }
+  .btn:hover { background: #9a86e038; text-decoration: none; }
+  .btn.ghost { border-color: var(--line); color: var(--ink-dim); background: #ffffff08; }
+
+  main { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 84px 0 0; }
+  h2 {
+    font-size: clamp(24px, 3vw, 34px); font-weight: 700; margin-bottom: 18px;
+    color: var(--ink);
+  }
+  h2 .rune { color: var(--violet); margin-right: 10px; }
+  .lede { font-size: clamp(17px, 1.9vw, 21px); color: var(--ink-dim); max-width: 720px; }
+  .lede em { color: var(--ink); font-style: normal; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
+  .card {
+    background: var(--bg-raised); border: 1px solid var(--line);
+    border-radius: 8px; padding: 26px 26px 24px;
+  }
+  .card h3 { font-size: 16px; letter-spacing: .08em; text-transform: uppercase; color: var(--violet); margin-bottom: 10px; }
+  .card p { color: var(--ink-dim); font-size: 15.5px; }
+
+  figure { margin: 56px 0 0; }
+  figure img { width: 100%; display: block; border-radius: 8px; border: 1px solid var(--line); }
+  figcaption { color: var(--ink-dim); font-size: 13.5px; margin-top: 12px; letter-spacing: .03em; }
+  figcaption .tag { color: var(--ember); text-transform: uppercase; letter-spacing: .1em; font-size: 12px; margin-right: 8px; }
+
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  @media (max-width: 720px) { .duo { grid-template-columns: 1fr; } }
+
+  .studio {
+    margin-top: 84px; padding: 48px 0; border-top: 1px solid var(--line);
+    display: flex; gap: 48px; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  }
+  .studio .name { font-size: 21px; }
+  .studio .blurb { color: var(--ink-dim); max-width: 560px; font-size: 15.5px; }
+  .studio .blurb b { color: var(--ink); font-weight: 600; }
+
+  footer {
+    border-top: 1px solid var(--line); margin-top: 0;
+    padding: 28px 32px 34px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    color: var(--ink-dim); font-size: 13.5px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand display" href="#top">Hexreach</a>
+  <div class="links">
+    <a href="#game">The Game</a>
+    <a href="#world">The World</a>
+    <a href="#studio">Studio</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <img class="art" src="assets/hero.jpg" alt="A hooded mage stands before a violet-lit stone ring gate in a dark wildwood">
+  <div class="over">
+    <p class="tagline">Build every spell you cast.</p>
+    <p class="sub">Raid a frontier where the elements went feral. Extract before the Storm Surge — or lose everything you carried.</p>
+    <div class="cta-row">
+      <span class="btn">Steam Early Access — Coming Soon</span>
+      <a class="btn ghost" href="#game">Learn more</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="game">
+    <h2 class="display"><span class="rune">◈</span>Arcane Extraction</h2>
+    <p class="lede">
+      A single-player <em>PvE extraction shooter</em> about one idea: every spell is
+      <em>built, not picked</em>. Socket a Frost aspect into a Bolt tome and you have an
+      ice dart — socket it into a Wall and you raise a glacier.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Build, don't pick</h3>
+        <p>8 elements × 10 tome forms × free-form sigils, wands and runes — hundreds of distinct spells from one crafting system.</p>
+      </div>
+      <div class="card">
+        <h3>A world that reacts</h3>
+        <p>Fire detonates toxic clouds. Lightning electrifies frozen slicks. Wind spreads wildfire. The reaction matrix is the game.</p>
+      </div>
+      <div class="card">
+        <h3>Mobility has a price</h3>
+        <p>Levitation and casting share one mana pool. Every second in the air is damage you can't deal on the ground.</p>
+      </div>
+      <div class="card">
+        <h3>Extraction with a conscience</h3>
+        <p>Whatever you carry is lost on death. Whatever you extract is yours — and attuned gear survives even the worst run.</p>
+      </div>
+      <div class="card">
+        <h3>Enemies with your arsenal</h3>
+        <p>Revenant Mages fight with the same spell system you do — and drop their actual builds when they fall.</p>
+      </div>
+      <div class="card">
+        <h3>The Storm Surge</h3>
+        <p>Every raid is on a timer. Surge waves close the map — reach a Waygate before the frontier swallows your haul.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="world">
+    <h2 class="display"><span class="rune">◈</span>The Frontier</h2>
+    <p class="lede">
+      Drop into 25-minute raids across a four-province frontier — the Whispering Wilds,
+      the Forgotten Coast, the Frozen Reaches, the Scorched Crater — and a drowned
+      tidal marsh beyond the second gate.
+    </p>
+
+    <figure>
+      <img src="assets/vista.jpg" alt="The Ashen Reach: a ruined watchtower coast, misty gnarled forest, a violet-lit frozen peak and a burning crater" loading="lazy">
+      <figcaption><span class="tag">Concept</span>The Ashen Reach — raid region one.</figcaption>
+    </figure>
+
+    <div class="duo">
+      <figure>
+        <img src="assets/engine_mage.jpg" alt="In-engine capture: a hooded mage casting on a stone pad beneath gnarled trees and a snow ridge" loading="lazy">
+        <figcaption><span class="tag">In-engine</span>Pre-alpha capture — the Wayfarer casts at spawn.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/engine_wilds.jpg" alt="In-engine capture: the Whispering Wilds seen from above — gnarled oaks across rolling terrain" loading="lazy">
+        <figcaption><span class="tag">In-engine</span>Pre-alpha capture — the Whispering Wilds.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="studio" id="studio">
+    <div>
+      <div class="name display">Hexreach Studio</div>
+      <p class="blurb" style="margin-top:8px">
+        <b>An independent game studio</b> founded by a solo developer, building
+        systems-dense dark fantasy with modern tooling — AI-assisted worldcraft,
+        procedural audio, and an extraction loop tuned for one player first.
+      </p>
+    </div>
+    <div style="font-size:14.5px;color:var(--ink-dim)">
+      Press &amp; inquiries<br>
+      <a href="mailto:henry@hexreach.studio">henry@hexreach.studio</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© 2025 Hexreach Studio</span>
+  <span>ARCANE EXTRACTION — Early Access in development</span>
+</footer>
+
+</body>
+</html>
